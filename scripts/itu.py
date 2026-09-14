@@ -490,6 +490,9 @@ def map_entries_to_un_iso(
 
 def write_csv(rows: List[Tuple[str, str, str]], output_path: str, include_header: bool = False) -> None:
     """Write rows to a CSV file."""
+    parent_dir = os.path.dirname(output_path)
+    if parent_dir:
+        os.makedirs(parent_dir, exist_ok=True)
     with open(output_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         if include_header:
